@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biología General - Proyecto Escolar Interactivo</title>
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2941/2941537.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+    <header id="inicio">
+        <span class="badge-escolar">Proyecto Escolar • Ciencias Naturales</span>
+        <h1>Biología General</h1>
+        <p>Explora el mundo de los seres vivos, las células y el ADN de forma interactiva</p>
+        <div class="header-acciones">
+            <a href="#temario" class="btn-primario">Explorar Temario</a>
+            <a href="#quiz-seccion" class="btn-secundario">Probar mis Conocimientos</a>
+        </div>
+    </header>
+
+    <nav>
+        <a href="#inicio">Inicio</a>
+        <a href="#temas">Artículos</a>
+        <a href="#temario">Temario y Buscador</a>
+        <a href="#quiz-seccion">Mini-Quiz</a>
+        <a href="#galeria-seccion">Galería</a>
+        <a href="#contacto">Dudas</a>
+    </nav>
+
+    <main class="contenedor">
+
+        <div id="alerta-get" class="alerta-get oculto" role="alert">
+            <div class="alerta-get-contenido">
+                <strong>¡Consulta recibida vía GET!</strong>
+                <p id="mensaje-get"></p>
+            </div>
+            <button type="button" id="btn-limpiar-get" class="btn-cerrar-alerta" title="Limpiar consulta">✕</button>
+        </div>
+
+        <section class="tarjeta-bienvenida">
+            <div class="bienvenida-texto">
+                <h2>Bienvenido al Laboratorio Digital</h2>
+                <p>En este espacio aprenderemos conceptos clave sobre los seres vivos, la estructura celular y la genética mediante herramientas interactivas diseñadas para reforzar tu aprendizaje.</p>
+            </div>
+            <div class="dato-curioso-box">
+                <span class="etiqueta-dato">Dato Científico</span>
+                <p id="texto-dato-curioso">El cuerpo humano adulto está compuesto por aproximadamente 37 billones de células trabajando en conjunto.</p>
+                <button type="button" id="btn-nuevo-dato" class="btn-outline">Siguiente dato</button>
+            </div>
+        </section>
+
+        <section id="temas">
+            <h2>Artículos Educativos</h2>
+            <div class="grid-articulos">
+                <article class="tarjeta">
+                    <span class="tag-tema">Citología</span>
+                    <h3>¿Qué es la Biología Celular?</h3>
+                    <p>Estudia las propiedades, estructura, funciones y ciclo de vida de las células, así como su interacción con el entorno.</p>
+                    <a href="https://es.wikipedia.org/wiki/Biolog%C3%ADa_celular" target="_blank" rel="noopener noreferrer" class="enlace-articulo">
+                        Aprender sobre células &rarr;
+                    </a>
+                </article>
+
+                <article class="tarjeta">
+                    <span class="tag-tema">Genética</span>
+                    <h3>La Molécula de la Vida: ADN</h3>
+                    <p>El ácido desoxirribonucleico contiene las instrucciones genéticas usadas en el desarrollo y funcionamiento de todos los organismos vivos.</p>
+                    <a href="https://es.wikipedia.org/wiki/%C3%81cido_desoxirribonucleico" target="_blank" rel="noopener noreferrer" class="enlace-articulo">
+                        Explorar genética &rarr;
+                    </a>
+                </article>
+            </div>
+        </section>
+
+        <section id="temario" class="seccion-panel">
+            <div class="encabezado-seccion">
+                <h2>Temario del Curso</h2>
+                <div class="buscador-box">
+                    <label for="buscador-temario" class="sr-only">Filtrar reinos o glosario</label>
+                    <input type="search" id="buscador-temario" placeholder="Filtrar reinos o términos del glosario...">
+                </div>
+            </div>
+
+            <div class="grid-temario">
+                <div class="bloque-temario">
+                    <h3>1. Pasos del Método Científico</h3>
+                    <ol class="lista-pasos">
+                        <li>Observación del fenómeno</li>
+                        <li>Planteamiento de preguntas</li>
+                        <li>Formulación de hipótesis</li>
+                        <li>Experimentación controlada</li>
+                        <li>Análisis y conclusiones</li>
+                    </ol>
+                </div>
+
+                <div class="bloque-temario">
+                    <h3>2. Reinos Biológicos</h3>
+                    <ul id="lista-reinos" class="lista-filtrable">
+                        <li data-texto="reino animalia animales eucariota"><strong>Reino Animalia:</strong> Organismos multicelulares heterótrofos (Animales).</li>
+                        <li data-texto="reino plantae plantas fotosintesis"><strong>Reino Plantae:</strong> Organismos autótrofos que realizan fotosíntesis (Plantas).</li>
+                        <li data-texto="reino fungi hongos descomponedores"><strong>Reino Fungi:</strong> Organismos descomponedores con pared de quitina (Hongos).</li>
+                        <li data-texto="reino monera bacterias procariotas"><strong>Reino Monera:</strong> Organismos unicelulares procariotas sin núcleo definido (Bacterias).</li>
+                        <li data-texto="reino protista protozoos algas unicelulares"><strong>Reino Protista:</strong> Organismos eucariotas simples, mayormente unicelulares.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bloque-glosario">
+                <h3>3. Glosario Interactivo</h3>
+                <dl id="lista-glosario" class="grid-glosario">
+                    <div class="item-glosario" data-texto="celula unidad anatomica fundamental organismos vivos">
+                        <dt>Célula</dt>
+                        <dd>Unidad anatómica y funcional fundamental de todos los organismos vivos.</dd>
+                    </div>
+                    <div class="item-glosario" data-texto="adn molecula informacion genetica hereditaria">
+                        <dt>ADN</dt>
+                        <dd>Molécula que almacena y transmite la información genética hereditaria.</dd>
+                    </div>
+                    <div class="item-glosario" data-texto="fotosintesis energia solar quimica plantas">
+                        <dt>Fotosíntesis</dt>
+                        <dd>Proceso mediante el cual las plantas convierten la energía luminosa en energía química.</dd>
+                    </div>
+                    <div class="item-glosario" data-texto="homeostasis equilibrio interno organismo">
+                        <dt>Homeostasis</dt>
+                        <dd>Capacidad de los seres vivos para mantener su equilibrio interno estable.</dd>
+                    </div>
+                </dl>
+                <p id="sin-resultados" class="mensaje-vacio oculto">No se encontraron coincidencias para tu búsqueda.</p>
+            </div>
+
+            <h3>4. Comparativa Celular</h3>
+            <div class="tabla-responsive">
+                <table class="tabla-datos">
+                    <thead>
+                        <tr>
+                            <th>Componente</th>
+                            <th>Célula Animal</th>
+                            <th>Célula Vegetal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Pared celular</td>
+                            <td><span class="badge-no">No presente</span></td>
+                            <td><span class="badge-si">Presente (Celulosa)</span></td>
+                        </tr>
+                        <tr>
+                            <td>Cloroplastos</td>
+                            <td><span class="badge-no">Ausentes</span></td>
+                            <td><span class="badge-si">Presentes</span></td>
+                        </tr>
+                        <tr>
+                            <td>Vacuola central</td>
+                            <td>Pequeñas y múltiples</td>
+                            <td>Una gran vacuola central</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="quiz-seccion" class="seccion-panel">
+            <h2>Autoevaluación Rápida de Biología</h2>
+            <p>Pon a prueba lo que has repasado. Responde las 4 preguntas y evalúa tu puntaje al instante:</p>
+
+            <div id="contenedor-preguntas" class="quiz-grid"></div>
+
+            <div class="quiz-controles">
+                <button type="button" id="btn-evaluar-quiz" class="btn-enviar">Calificar Respuestas</button>
+                <button type="button" id="btn-reiniciar-quiz" class="btn-outline">Reiniciar Quiz</button>
+            </div>
+
+            <div id="resultado-quiz" class="resultado-quiz oculto"></div>
+        </section>
+
+        <section id="galeria-seccion" class="seccion-panel">
+            <h2>Galería Científica</h2>
+            <p>Haz clic sobre cualquier fotografía para ampliar y leer su ficha técnica:</p>
+            <div class="galeria">
+                <figure class="item-galeria" data-titulo="Prácticas de Laboratorio" data-descripcion="El microscopio óptico permite observar estructuras celulares, tejidos y microorganismos invisibles al ojo humano.">
+                    <img src="https://images.unsplash.com/photo-1530026405186-ed1f139313f8?w=600" alt="Microscopio óptico utilizado en el laboratorio escolar de biología">
+                    <figcaption>Prácticas de laboratorio</figcaption>
+                </figure>
+                <figure class="item-galeria" data-titulo="Genética y Doble Hélice de ADN" data-descripcion="Representación estructural del ADN, compuesto por nucleótidos de adenina, timina, citosina y guanina.">
+                    <img src="https://images.unsplash.com/photo-1507668077129-56e32842fceb?w=600" alt="Estructura molecular de la doble hélice de ADN en investigación genética">
+                    <figcaption>Genética y ADN</figcaption>
+                </figure>
+                <figure class="item-galeria" data-titulo="Ecosistemas y Biodiversidad" data-descripcion="Un ecosistema integra a los seres vivos (biocenosis) y el medio físico donde interactúan (biotopo).">
+                    <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=600" alt="Paisaje natural de un bosque que representa un ecosistema">
+                    <figcaption>Ecosistemas</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <section id="contacto" class="seccion-panel">
+            <h2>Formulario de Dudas al Profesor</h2>
+            <p>Envía tus preguntas mediante método <strong>GET</strong> para procesarlas en pantalla:</p>
+
+            <form id="form-dudas" action="#inicio" method="get">
+                <div class="form-grid">
+                    <div class="campo">
+                        <label for="nombre">Nombre del alumno:</label>
+                        <input type="text" id="nombre" name="nombre" placeholder="Ej. Sofía Martínez" required>
+                    </div>
+
+                    <div class="campo">
+                        <label for="tema">Tema relacionado:</label>
+                        <select id="tema" name="tema">
+                            <option value="Biología Celular">Biología Celular</option>
+                            <option value="Genética y ADN">Genética y ADN</option>
+                            <option value="Reinos Biológicos">Reinos Biológicos</option>
+                            <option value="Método Científico">Método Científico</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="campo">
+                    <label for="pregunta">Pregunta sobre la materia:</label>
+                    <textarea id="pregunta" name="pregunta" rows="3" placeholder="Escribe aquí tu duda detallada..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn-enviar">Enviar consulta (GET)</button>
+            </form>
+        </section>
+
+    </main>
+
+    <div id="modal-imagen" class="modal oculto" role="dialog" aria-modal="true" aria-labelledby="modal-titulo">
+        <div class="modal-contenido">
+            <button type="button" id="btn-cerrar-modal" class="modal-cerrar" aria-label="Cerrar vista ampliada">✕</button>
+            <img id="modal-img" src="" alt="">
+            <div class="modal-info">
+                <h3 id="modal-titulo"></h3>
+                <p id="modal-desc"></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast-container" class="toast-container"></div>
+
+    <footer>
+        <p>Proyecto Escolar de Biología General • Desarrollado con HTML5, CSS3 y JavaScript</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 1. SISTEMA DE ALERTAS FLOTANTES (TOASTS)
+            function mostrarToast(mensaje, tipo) {
+                if (!tipo) { tipo = 'info'; }
+                const contenedor = document.getElementById('toast-container');
+                const toast = document.createElement('div');
+                toast.className = 'toast toast-' + tipo;
+                toast.textContent = mensaje;
+                contenedor.appendChild(toast);
+
+                setTimeout(function() {
+                    toast.classList.add('toast-saliendo');
+                    toast.addEventListener('animationend', function() {
+                        toast.remove();
+                    });
+                }, 3800);
+            }
+
+            // 2. PROCESAMIENTO DE PARÁMETROS GET EN LA URL
+            function verificarParametrosGET() {
+                const params = new URLSearchParams(window.location.search);
+                const nombre = params.get('nombre');
+                const tema = params.get('tema');
+                const pregunta = params.get('pregunta');
+
+                if (nombre && pregunta) {
+                    const alertaGet = document.getElementById('alerta-get');
+                    const mensajeGet = document.getElementById('mensaje-get');
+                    const temaTexto = tema ? ' sobre "' + tema + '"' : '';
+
+                    mensajeGet.textContent = 'Hola ' + nombre + ', tu duda' + temaTexto + ' ("' + pregunta + '") ha sido registrada correctamente.';
+                    alertaGet.classList.remove('oculto');
+                    mostrarToast('Consulta de ' + nombre + ' recibida por GET', 'exito');
+                }
+            }
+
+            document.getElementById('btn-limpiar-get').addEventListener('click', function() {
+                window.history.replaceState({}, document.title, window.location.pathname);
+                document.getElementById('alerta-get').classList.add('oculto');
+                mostrarToast('Parámetros GET limpiados de la URL', 'info');
+            });
+
+            // 3. VALIDACIÓN CON CONDICIONALES EN EL FORMULARIO
+            document.getElementById('form-dudas').addEventListener('submit', function(e) {
+                const nombre = document.getElementById('nombre').value.trim();
+                const pregunta = document.getElementById('pregunta').value.trim();
+
+                if (nombre.length < 3) {
+                    e.preventDefault();
+                    alert('Por favor, escribe un nombre válido de al menos 3 caracteres.');
+                    return;
+                }
+
+                if (pregunta.length < 8) {
+                    e.preventDefault();
+                    alert('Tu pregunta es muy corta. Detállala un poco más (mínimo 8 caracteres).');
+                }
+            });
+
+            // 4. DATOS CURIOSOS ROTATIVOS
+            const datosCuriosos = [
+                'El cuerpo humano adulto está compuesto por aproximadamente 37 billones de células trabajando en conjunto.',
+                'Si desenrollaras todo el ADN de una sola célula humana, mediría alrededor de 2 metros de longitud.',
+                'Las bacterias del Reino Monera son los organismos más antiguos y abundantes del planeta Tierra.',
+                'Los hongos del Reino Fungi están genéticamente más emparentados con los animales que con las plantas.'
+            ];
+            let indiceDato = 0;
+
+            document.getElementById('btn-nuevo-dato').addEventListener('click', function() {
+                indiceDato = (indiceDato + 1) % datosCuriosos.length;
+                document.getElementById('texto-dato-curioso').textContent = datosCuriosos[indiceDato];
+            });
+
+            // 5. BUSCADOR INTERACTIVO EN TIEMPO REAL
+            const buscador = document.getElementById('buscador-temario');
+            buscador.addEventListener('input', function() {
+                const termino = buscador.value.toLowerCase().trim();
+                const itemsReinos = document.querySelectorAll('#lista-reinos li');
+                const itemsGlosario = document.querySelectorAll('.item-glosario');
+                let coincidencias = 0;
+
+                itemsReinos.forEach(function(item) {
+                    const texto = item.getAttribute('data-texto');
+                    if (texto.includes(termino)) {
+                        item.classList.remove('oculto');
+                        coincidencias++;
+                    } else {
+                        item.classList.add('oculto');
+                    }
+                });
+
+                itemsGlosario.forEach(function(item) {
+                    const texto = item.getAttribute('data-texto');
+                    if (texto.includes(termino)) {
+                        item.classList.remove('oculto');
+                        coincidencias++;
+                    } else {
+                        item.classList.add('oculto');
+                    }
+                });
+
+                const msgVacio = document.getElementById('sin-resultados');
+                if (coincidencias === 0) {
+                    msgVacio.classList.remove('oculto');
+                } else {
+                    msgVacio.classList.add('oculto');
+                }
+            });
+
+            // 6. MINI-QUIZ INTERACTIVO CON CICLOS Y CONDICIONALES
+            const preguntasQuiz = [
+                {
+                    pregunta: '1. ¿Qué organelo exclusivo de la célula vegetal realiza la fotosíntesis?',
+                    opciones: ['Mitocondria', 'Cloroplasto', 'Ribosoma'],
+                    correcta: 1
+                },
+                {
+                    pregunta: '2. ¿Cuál es el primer paso del Método Científico?',
+                    opciones: ['Experimentación', 'Formulación de hipótesis', 'Observación del fenómeno'],
+                    correcta: 2
+                },
+                {
+                    pregunta: '3. ¿A qué reino pertenecen las bacterias (organismos procariotas)?',
+                    opciones: ['Reino Monera', 'Reino Fungi', 'Reino Protista'],
+                    correcta: 0
+                },
+                {
+                    pregunta: '4. ¿Qué molécula almacena la información genética hereditaria?',
+                    opciones: ['Clorofila', 'ADN', 'Celulosa'],
+                    correcta: 1
+                }
+            ];
+
+            function renderizarQuiz() {
+                const contenedor = document.getElementById('contenedor-preguntas');
+                contenedor.innerHTML = '';
+
+                for (let i = 0; i < preguntasQuiz.length; i++) {
+                    const item = preguntasQuiz[i];
+                    const card = document.createElement('div');
+                    card.className = 'quiz-card';
+                    card.id = 'pregunta-card-' + i;
+
+                    let opcionesHTML = '';
+                    for (let j = 0; j < item.opciones.length; j++) {
+                        opcionesHTML += '<label class="opcion-radio">' +
+                            '<input type="radio" name="pregunta_' + i + '" value="' + j + '">' +
+                            '<span>' + item.opciones[j] + '</span>' +
+                            '</label>';
+                    }
+
+                    card.innerHTML = '<p class="quiz-titulo">' + item.pregunta + '</p><div class="quiz-opciones">' + opcionesHTML + '</div>';
+                    contenedor.appendChild(card);
+                }
+            }
+
+            document.getElementById('btn-evaluar-quiz').addEventListener('click', function() {
+                let aciertos = 0;
+                let sinResponder = 0;
+
+                for (let i = 0; i < preguntasQuiz.length; i++) {
+                    const seleccionada = document.querySelector('input[name="pregunta_' + i + '"]:checked');
+                    const card = document.getElementById('pregunta-card-' + i);
+                    card.classList.remove('correcta', 'incorrecta');
+
+                    if (!seleccionada) {
+                        sinResponder++;
+                    } else if (parseInt(seleccionada.value, 10) === preguntasQuiz[i].correcta) {
+                        aciertos++;
+                        card.classList.add('correcta');
+                    } else {
+                        card.classList.add('incorrecta');
+                    }
+                }
+
+                if (sinResponder > 0) {
+                    alert('Te faltan ' + sinResponder + ' pregunta(s) por responder antes de calificar.');
+                    return;
+                }
+
+                const resultadoBox = document.getElementById('resultado-quiz');
+                const porcentaje = (aciertos / preguntasQuiz.length) * 100;
+                resultadoBox.classList.remove('oculto', 'nivel-alto', 'nivel-medio', 'nivel-bajo');
+
+                if (porcentaje === 100) {
+                    resultadoBox.classList.add('nivel-alto');
+                    resultadoBox.innerHTML = '<strong>¡Excelente! (' + aciertos + '/' + preguntasQuiz.length + ')</strong> Dominas los conceptos fundamentales de biología.';
+                    mostrarToast('¡Puntaje perfecto en el quiz!', 'exito');
+                } else if (porcentaje >= 50) {
+                    resultadoBox.classList.add('nivel-medio');
+                    resultadoBox.innerHTML = '<strong>¡Buen trabajo! (' + aciertos + '/' + preguntasQuiz.length + ')</strong> Vas por buen camino, repasa las tarjetas marcadas en rojo.';
+                    mostrarToast('Quiz evaluado: Buen resultado', 'info');
+                } else {
+                    resultadoBox.classList.add('nivel-bajo');
+                    resultadoBox.innerHTML = '<strong>Sigue practicando (' + aciertos + '/' + preguntasQuiz.length + ')</strong> Revisa el temario y el glosario para reforzar tus conocimientos.';
+                    mostrarToast('Repasa el temario e inténtalo de nuevo', 'alerta');
+                }
+            });
+
+            document.getElementById('btn-reiniciar-quiz').addEventListener('click', function() {
+                renderizarQuiz();
+                document.getElementById('resultado-quiz').classList.add('oculto');
+                mostrarToast('Cuestionario reiniciado', 'info');
+            });
+
+            // 7. GALERÍA INTERACTIVA CON MODAL
+            const modal = document.getElementById('modal-imagen');
+            const modalImg = document.getElementById('modal-img');
+            const modalTitulo = document.getElementById('modal-titulo');
+            const modalDesc = document.getElementById('modal-desc');
+
+            document.querySelectorAll('.item-galeria').forEach(function(figura) {
+                figura.addEventListener('click', function() {
+                    const img = figura.querySelector('img');
+                    modalImg.src = img.src;
+                    modalImg.alt = img.alt;
+                    modalTitulo.textContent = figura.getAttribute('data-titulo');
+                    modalDesc.textContent = figura.getAttribute('data-descripcion');
+                    modal.classList.remove('oculto');
+                });
+            });
+
+            document.getElementById('btn-cerrar-modal').addEventListener('click', function() {
+                modal.classList.add('oculto');
+            });
+
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.classList.add('oculto');
+                }
+            });
+
+            // Inicialización
+            verificarParametrosGET();
+            renderizarQuiz();
+        });
+    </script>
+</body>
+</html>
